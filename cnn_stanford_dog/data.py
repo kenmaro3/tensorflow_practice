@@ -79,7 +79,7 @@ def dispense_dataset():
     test_y_ds = tf.data.Dataset.from_tensor_slices(test_y_np)
 
 
-    return train_x_ds, train_y_ds, test_x_ds, test_y_ds
+    return train_x_ds, train_y_ds, test_x_ds, test_y_ds, len(train_x)
 
 
 

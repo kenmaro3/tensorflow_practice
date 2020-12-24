@@ -10,11 +10,11 @@ from foodnet import FoodNet
 if __name__ == "__main__":
     batch_size = 32
 
-    train_x_ds, train_y_ds, test_x_ds, test_y_ds = dispense_dataset()
 
     model = FoodNet(4)
 
-    train_x_ds, train_y_ds, test_x_ds, test_y_ds = dispense_dataset()
+    train_x_ds, train_y_ds, test_x_ds, test_y_ds, len_train_x = dispense_dataset()
+
 
     train_ds = tf.data.Dataset.zip((train_x_ds, train_y_ds))
     test_ds = tf.data.Dataset.zip((test_x_ds, test_y_ds))
@@ -78,8 +78,8 @@ if __name__ == "__main__":
             test_accuracy(target, predictions)
 
 
-        with tf.device("CPU"):
-            with tqdm(total=len(train_x_ds)) as pb:
+        with tf.device("GPU:0"):
+            with tqdm(total=len_train_x) as pb:
                 for data, target in train_ds:
                     train_step(data, target)
                     pb.update(data.shape[0])
