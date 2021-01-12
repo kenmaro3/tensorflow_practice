@@ -57,6 +57,7 @@ class FoodNet(Model):
         #print(f'x.shape >>> {x.shape}')
         x = self.fc2(x)
         #print(f'x.shape >>> {x.shape}')
+        x = tf.keras.activations.softmax(x) 
 
         return x
 

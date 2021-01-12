@@ -78,7 +78,8 @@ if __name__ == "__main__":
             test_accuracy(target, predictions)
 
 
-        with tf.device("GPU:0"):
+        #with tf.device("GPU:0"):
+        with tf.device("CPU"):
             with tqdm(total=len_train_x) as pb:
                 for data, target in train_ds:
                     train_step(data, target)
